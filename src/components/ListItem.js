@@ -30,7 +30,7 @@ const Item = styled.button`
     cursor: pointer;
 `;
 
-const ListItem = ({ id, name, phone_number, setSelectContactId, selectContactId }) => {
+const ListItem = ({ id, name, phoneNumber, setSelectContactId, selectContactId }) => {
     
     const handleListItem = () => {
         setSelectContactId(id);
@@ -40,7 +40,7 @@ const ListItem = ({ id, name, phone_number, setSelectContactId, selectContactId 
         <Items id={id === selectContactId} onClick={handleListItem}>
             <Item id={id === selectContactId} >
                 <div className="jcTaHb">{name}</div>
-                <div className="hydYaP">{phone_number}</div>
+                <div className="hydYaP">{phoneNumber}</div>
             </Item>
         </Items>
     );
