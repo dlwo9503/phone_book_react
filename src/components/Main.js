@@ -34,7 +34,7 @@ const Main = () => {
         <div className="biCrYn">
             {
                 addContact ?
-                    <Add setContact={setContact} setAddContact={setAddContact}/> :
+                    <Add setAddContact={setAddContact}/> :
                     <>
                         <div className="kMthTr">
                             <div className="gfuSqG">

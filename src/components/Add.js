@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const Add = ({ setContact, setAddContact }) => {
-    const [name, setName] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
-    const [age, setAge] = useState('');
-    const [email, setEmail] = useState('');
-    const [description, setDescription] = useState('');
+const Add = ({ setAddContact }) => {
+    const [inputs, setInputs] = useState({
+        name: '',
+        phoneNumber: '',
+        age: '',
+        email: '',
+        description: ''
+    });
+    const { name, phoneNumber, age, email, description } = inputs;
     const [check, setCheck] = useState(false); // 유효성 체크용
 
     const handleConfirm = () => {
@@ -27,15 +30,17 @@ const Add = ({ setContact, setAddContact }) => {
 
     const handleCancel = () => { setAddContact(false) }
 
-    const onChangeName = (e) => { setName(e.target.value) }
-    const onChangePhone_number = (e) => { setPhoneNumber(e.target.value) }
-    const onChangeAge = (e) => { setAge(e.target.value) }
-    const onChangeEmail = (e) => { setEmail(e.target.value) }
-    const onChangeDescription = (e) => { setDescription(e.target.value) }
+    const onChange = (e) => {
+        const { value, name } = e.target;
+        setInputs({
+            ...inputs,
+            [name]: value
+        });
+    }
 
-    useEffect(() => { 
+    useEffect(() => {
         (name !== '' && age !== '' && phoneNumber !== '' && email !== '') ? setCheck(true) : setCheck(false);
-    },[name, age, phoneNumber, email])
+    }, [name, age, phoneNumber, email])
 
     return (
         <div>
@@ -44,22 +49,22 @@ const Add = ({ setContact, setAddContact }) => {
                     <h1 className="hmqpxx">연락처를 등록하세요</h1>
                     <div className="jEEywD">
                         <label className="iPexDg">이름</label>
-                        <input className="kFmqyc" type="text" name="name" value={name} onChange={onChangeName} />
+                        <input className="kFmqyc" type="text" name="name" value={name} onChange={onChange} />
                     </div>
                     <div className="jEEywD">
                         <label className="iPexDg">연락처</label>
-                        <input className="kFmqyc" type="text" name="phoneNumber" value={phoneNumber} onChange={onChangePhone_number} />
+                        <input className="kFmqyc" type="text" name="phoneNumber" value={phoneNumber} onChange={onChange} />
                     </div>
                     <div className="jEEywD">
                         <label className="iPexDg">나이</label>
-                        <input className="kFmqyc" type="text" name="age" value={age} onChange={onChangeAge} />
+                        <input className="kFmqyc" type="text" name="age" value={age} onChange={onChange} />
                     </div><div className="jEEywD">
                         <label className="iPexDg">email</label>
-                        <input className="kFmqyc" type="text" name="email" value={email} onChange={onChangeEmail} />
+                        <input className="kFmqyc" type="text" name="email" value={email} onChange={onChange} />
                     </div>
                     <div className="jEEywD">
                         <label className="iPexDg">설명</label>
-                        <input className="kFmqyc" type="text" name="description" value={description} onChange={onChangeDescription} />
+                        <input className="kFmqyc" type="text" name="description" value={description} onChange={onChange} />
                     </div>
                     <div className="eEJWPz">
                         <button disabled={!check} className="eraKfR" onClick={handleConfirm}>확인</button>
