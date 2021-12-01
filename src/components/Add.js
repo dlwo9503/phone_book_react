@@ -9,7 +9,7 @@ const Add = ({ setContact, setAddContact }) => {
     const [description, setDescription] = useState('');
     const [check, setCheck] = useState(false); // 유효성 체크용
 
-    const handleConfirm = async () => {
+    const handleConfirm = () => {
         axios.post('https://contact-server1.herokuapp.com/contacts/', JSON.stringify(
             {
                 name: name,
@@ -22,21 +22,10 @@ const Add = ({ setContact, setAddContact }) => {
                 "Content-Type": `application/json`,
             },
         })
-        await axios.get('https://contact-server1.herokuapp.com/contacts').then((res) =>{
-            setContact(res.data);
-        })
         setAddContact(false);
     }
 
-    // useEffect(() => {
-    //     return axios.get('https://contact-server1.herokuapp.com/contacts').then((res) =>{
-    //         setContact(res.data);
-    //     })
-    // });
-
-    const handleCancel = () => {
-        setAddContact(false);
-    }
+    const handleCancel = () => { setAddContact(false) }
 
     const onChangeName = (e) => { setName(e.target.value) }
     const onChangePhone_number = (e) => { setPhoneNumber(e.target.value) }

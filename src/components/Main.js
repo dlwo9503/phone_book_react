@@ -20,10 +20,14 @@ const Main = () => {
         })
     }
 
-    useEffect(() => {
-        axios.get('https://contact-server1.herokuapp.com/contacts').then((res) =>{
+    const getAll = async () => {
+        await axios.get('https://contact-server1.herokuapp.com/contacts').then((res) =>{
             setContact(res.data);
         })
+    }
+
+    useEffect(() => {
+        getAll();
     },[addContact, selectContactId]);
 
     return (
