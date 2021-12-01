@@ -12,8 +12,8 @@ const Add = ({ setAddContact }) => {
     const { name, phoneNumber, age, email, description } = inputs;
     const [check, setCheck] = useState(false); // 유효성 체크용
 
-    const handleConfirm = () => {
-        axios.post('https://contact-server1.herokuapp.com/contacts/', JSON.stringify(
+    const handleConfirm = async () => {
+        await axios.post('https://contact-server1.herokuapp.com/contacts/', JSON.stringify(
             {
                 name: name,
                 age: Number(age),
