@@ -23,6 +23,7 @@ const Main = () => {
       "https://contact-server1.herokuapp.com/contacts/" + selectContactId
     );
     setSelectContactId(0); // 선택 연락처 초기화
+    getAll();
   };
 
   const getAll = async () => {
@@ -34,7 +35,7 @@ const Main = () => {
 
   useEffect(() => {
     getAll();
-  }, [addContact, selectContactId]);
+  }, [addContact]);
 
   return (
     <div className="biCrYn">
