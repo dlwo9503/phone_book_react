@@ -19,18 +19,26 @@ const Main = () => {
   };
 
   const handleDelete = async () => {
-    await axios.delete(
-      "https://contact-server1.herokuapp.com/contacts/" + selectContactId
-    );
-    setSelectContactId(0); // 선택 연락처 초기화
-    getAll();
+    try {
+      await axios.delete(
+        "https://contact-server1.herokuapp.com/contacts/" + selectContactId
+      );
+      setSelectContactId(0); // 선택 연락처 초기화
+      getAll();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const getAll = async () => {
-    const result = await axios.get(
-      "https://contact-server1.herokuapp.com/contacts"
-    );
-    setContact(result.data);
+    try {
+      const result = await axios.get(
+        "https://contact-server1.herokuapp.com/contacts"
+      );
+      setContact(result.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {

@@ -13,22 +13,26 @@ const Add = ({ setAddContact }) => {
   const [check, setCheck] = useState(false); // 유효성 체크용
 
   const handleConfirm = async () => {
-    await axios.post(
-      "https://contact-server1.herokuapp.com/contacts/",
-      JSON.stringify({
-        name: name,
-        age: Number(age),
-        phoneNumber: phoneNumber,
-        email: email,
-        description: description,
-      }),
-      {
-        headers: {
-          "Content-Type": `application/json`,
-        },
-      }
-    );
-    setAddContact(false);
+    try {
+      await axios.post(
+        "https://contact-server1.herokuapp.com/contacts/",
+        JSON.stringify({
+          name: name,
+          age: Number(age),
+          phoneNumber: phoneNumber,
+          email: email,
+          description: description,
+        }),
+        {
+          headers: {
+            "Content-Type": `application/json`,
+          },
+        }
+      );
+      setAddContact(false);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleCancel = () => {
