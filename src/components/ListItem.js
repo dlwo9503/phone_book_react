@@ -40,10 +40,13 @@ const ListItem = ({
   const handleListItem = () => {
     setSelectContactId(id);
   };
+  const handleFocusContact = () => {
+    setSelectContactId(id);
+  };
 
   return (
     <Items id={id === selectContactId} onClick={handleListItem}>
-      <Item id={id === selectContactId}>
+      <Item id={id === selectContactId} onFocus={handleFocusContact}>
         <div className="jcTaHb">{name}</div>
         <div className="hydYaP">{phoneNumber}</div>
       </Item>

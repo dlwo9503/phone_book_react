@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+const URL = "https://contact-server1.herokuapp.com/contacts/";
+
 const Add = ({ setAddContact }) => {
   const [inputs, setInputs] = useState({
     name: "",
@@ -15,7 +17,7 @@ const Add = ({ setAddContact }) => {
   const handleConfirm = async () => {
     try {
       await axios.post(
-        "https://contact-server1.herokuapp.com/contacts/",
+        URL,
         JSON.stringify({
           name: name,
           age: Number(age),

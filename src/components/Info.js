@@ -1,15 +1,24 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+const URL = "https://contact-server1.herokuapp.com/contacts/";
+
 const Info = ({ selectContactId }) => {
   const [selectContact, setSelectContact] = useState({});
+
+  const getSelectContact = async () => {
+    try {
+      const result = await axios.get(URL + selectContactId);
+      setSelectContact(result.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
-    axios
-      .get("https://contact-server1.herokuapp.com/contacts/" + selectContactId)
-      .then((res) => {
-        setSelectContact(res.data);
-      });
+    getSelectContact();
   }, [selectContactId]);
+
   return (
     <div class="DykGo">
       <dl class="XJxhY">
