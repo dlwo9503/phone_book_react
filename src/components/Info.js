@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useRecoilValue } from "recoil";
+import { selectContactIdState } from "../state";
 
 const URL = "https://contact-server1.herokuapp.com/contacts/";
 
-const Info = ({ selectContactId }) => {
+const Info = () => {
   const [selectContact, setSelectContact] = useState({});
+
+  const selectContactId = useRecoilValue(selectContactIdState);
 
   const getSelectContact = async () => {
     try {

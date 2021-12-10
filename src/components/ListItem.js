@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { selectContactIdState } from "../state";
 
 const Items = styled.li`
   display: flex;
@@ -30,13 +32,9 @@ const Item = styled.button`
   cursor: pointer;
 `;
 
-const ListItem = ({
-  id,
-  name,
-  phoneNumber,
-  setSelectContactId,
-  selectContactId,
-}) => {
+const ListItem = ({ id, name, phoneNumber }) => {
+  const selectContactId = useRecoilValue(selectContactIdState);
+  const setSelectContactId = useSetRecoilState(selectContactIdState);
   const handleListItem = () => {
     setSelectContactId(id);
   };

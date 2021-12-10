@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+import {
+  useSetRecoilState, // 구독하는 값을 변경하는 함수만 반환합니다.
+} from "recoil";
+import { addContactState } from "../state";
+
 const URL = "https://contact-server1.herokuapp.com/contacts/";
 
-const Add = ({ setAddContact }) => {
+const Add = () => {
   const [inputs, setInputs] = useState({
     name: "",
     phoneNumber: "",
@@ -13,6 +18,7 @@ const Add = ({ setAddContact }) => {
   });
   const { name, phoneNumber, age, email, description } = inputs;
   const [check, setCheck] = useState(false); // 유효성 체크용
+  const setAddContactUseSetRecoilState = useSetRecoilState(addContactState);
 
   const handleConfirm = async () => {
     try {
@@ -31,14 +37,15 @@ const Add = ({ setAddContact }) => {
           },
         }
       );
-      setAddContact(false);
+
+      setAddContactUseSetRecoilState(false);
     } catch (error) {
       console.log(error);
     }
   };
 
   const handleCancel = () => {
-    setAddContact(false);
+    setAddContactUseSetRecoilState(false);
   };
 
   const handleInputs = (e) => {
