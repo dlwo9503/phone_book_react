@@ -16,7 +16,7 @@ import {
 const URL = "https://contact-server1.herokuapp.com/contacts/";
 
 const Main = () => {
-  const setContact = useSetRecoilState(contactState); // 전체 연락처 갑 변경 함수
+  const setContact = useSetRecoilState(contactState); // 전체 연락처 값 변경 함수
   const [keyword, setKeyword] = useRecoilState(keywordState); // 검색어
   const [addContact, setAddContact] = useRecoilState(addContactState); // 추가버튼 클릭 유무
   const [selectContactId, setSelectContactId] =
